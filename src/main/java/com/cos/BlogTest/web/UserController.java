@@ -19,6 +19,12 @@ public class UserController {
 	
 	private final UserRepository userRepository;
 	
+	@PostMapping("/login")
+	public String login() {
+		
+		return "redirect:/";
+	}
+	
 	@PostMapping("/join")
 	public String join(JoinReqDto dto) { //usernmae= ssar&password =1234&email=ssar@nate.com
 		
