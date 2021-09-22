@@ -4,9 +4,12 @@ import com.cos.BlogTest.domain.user.User;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.Setter;
 
+//dto는 3개 고정
 @Getter
 @AllArgsConstructor
+@Setter
 public class JoinReqDto {
 	private String username;
 	private String password;
