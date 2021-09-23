@@ -1,6 +1,7 @@
 package com.cos.BlogTest.web;
 
-import org.springframework.data.convert.ReadingConverter;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -10,6 +11,7 @@ import com.cos.BlogTest.domain.user.User;
 import com.cos.BlogTest.domain.user.UserRepository;
 import com.cos.BlogTest.utill.SHA;
 import com.cos.BlogTest.web.dto.JoinReqDto;
+import com.cos.BlogTest.web.dto.LoginReqDto;
 
 import lombok.RequiredArgsConstructor;
 
@@ -18,11 +20,21 @@ import lombok.RequiredArgsConstructor;
 public class UserController {
 	
 	private final UserRepository userRepository;
+	private final HttpSession Session;
 	
 	@PostMapping("/login")
-	public String login() {
+	public String login(LoginReqDto dto) {
 		
-		return "redirect:/";
+		String encPassword = SHA.encrypt(dto.getPassword());
+		User principal = userRepository.mLogin(dto.getUsername(), encPassword);
+		
+		if(principal == null) {
+			return "redirect:/loginForm";
+		}else {
+			Session.setAttribute("principal", principal);
+			return "redirect:/";
+		}
+		
 	}
 	
 	@PostMapping("/join")
