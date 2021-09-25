@@ -10,15 +10,15 @@
 		
 	<br /><br />
 	<div>
-		글 번호 : 1</span> 작성자 : <span><i>홍길동</i></span>
+		글 번호 : ${boardEntity.id} </span> 작성자 : <span><i>${boardEntity.user.username}</i></span>
 	</div>
 	<br />
 	<div>
-		<h3>글제목</h3>
+		<h3>${boardEntity.title}</h3>
 	</div>
 	<hr />
 	<div>
-		<div>글내용</div>
+		<div>${boardEntity.content}</div>
 	</div>
 	<hr />
 
