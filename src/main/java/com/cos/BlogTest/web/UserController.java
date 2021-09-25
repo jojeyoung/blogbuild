@@ -22,6 +22,7 @@ public class UserController {
 	private final UserRepository userRepository;
 	private final HttpSession Session;
 	
+	
 	@PostMapping("/login")
 	public String login(LoginReqDto dto) {
 		
@@ -62,6 +63,13 @@ public class UserController {
 	@GetMapping("/user/{id}")
 	public String userInfo(@PathVariable int id) {
 		return "user/updateForm";
+	}
+	
+	@GetMapping("/logout")
+	public String logout() {
+		Session.invalidate();
+		return "redirect:/";
+		
 	}
 	
 }
