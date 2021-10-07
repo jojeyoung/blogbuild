@@ -46,7 +46,9 @@ public class BoardController {
 	@GetMapping("/board/{id}")
 	public String datail(@PathVariable int id, Model model) {
 		
-		Board boardEntity = boardRepository.findById(id).get();
+		Board boardEntity = boardRepository.findById(id)
+				.orElse(new Board(10,"글없어요", "글없어요", null));
+		
 		model.addAttribute("boardEntity", boardEntity);
 		return "board/detail";
 	}
