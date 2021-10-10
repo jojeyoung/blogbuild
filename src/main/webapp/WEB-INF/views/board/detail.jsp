@@ -4,10 +4,26 @@
 
 <div class="container">
 		<a href="#" class="btn btn-warning">수정</a>
-		<form action="#" method="post" style="display:inline-block">
-			<button id="btn-delete" class="btn btn-danger" type="submit">삭제</button>
-		</form>
+		<button class="btn btn-danger" onclick="deleteById(${boardEntity.id})">삭제</button>
 		
+<script>
+		
+			async function deleteById(id){
+				
+				let response = await fetch("http://localhost:8080/board/"+id, {
+					method: "delete"
+				}); 
+				
+			
+				let parseResponse = await response.text();
+				console.log(parseResponse);
+				
+				alert("삭제 성공");
+				location.href="/";
+		
+			}
+			
+		</script>
 	<br /><br />
 	<div>
 		글 번호 : ${boardEntity.id} </span> 작성자 : <span><i>${boardEntity.user.username}</i></span>
@@ -48,5 +64,7 @@
 	</div>
 	<br/>
 </div>
+
+
 
 <%@ include file="../layout/footer.jsp"%>
