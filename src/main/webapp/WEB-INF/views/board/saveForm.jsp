@@ -10,7 +10,7 @@
 	  <div class="form-group">
 	  	<textarea id="summernote" name="content" class="form-control" rows="5"  ></textarea>
 	  </div>
-	  <button type="submit" class="btn btn-primary">글쓰기</button>
+	  <button type="submit"  class="btn btn-primary">글쓰기</button>
 	</form>
 </div>
 
@@ -18,6 +18,7 @@
         $('#summernote').summernote({
              height: 350
         });
+        
   </script>
 <%@ include file="../layout/footer.jsp" %>
 

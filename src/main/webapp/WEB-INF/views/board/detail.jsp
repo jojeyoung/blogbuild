@@ -14,15 +14,17 @@
 					method: "delete"
 				}); 
 				
-			
-				let parseResponse = await response.text();
+				let parseResponse = await response.json();
 				console.log(parseResponse);
 				
-				alert("삭제 성공");
-				location.href="/";
-		
+				if(parseResponse.code == 1){
+					alert("삭제 성공");
+					location.href="/";	
+				} else {
+					alert(parseResponse.msg);
+					location.href="/";
+				}
 			}
-			
 		</script>
 	<br /><br />
 	<div>
