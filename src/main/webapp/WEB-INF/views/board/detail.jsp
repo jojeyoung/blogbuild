@@ -3,9 +3,10 @@
 <%@ include file="../layout/header.jsp"%>
 
 <div class="container">
+	<c:if test = "${sessionScope.principal.id == boardEntity.user.id}">
 		<a href="#" class="btn btn-warning">수정</a>
 		<button class="btn btn-danger" onclick="deleteById(${boardEntity.id})">삭제</button>
-		
+	</c:if>
 <script>
 		
 			async function deleteById(id){
