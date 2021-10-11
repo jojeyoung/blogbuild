@@ -5,6 +5,8 @@ package com.cos.BlogTest.handler.ex;
 
 public class MyNotFoundException extends RuntimeException{
 	
+	private static final long serialVersionUID = 1L;
+	
 	public MyNotFoundException(String mag) {
 		super(mag);
 	}

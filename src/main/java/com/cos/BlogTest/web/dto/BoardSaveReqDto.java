@@ -1,16 +1,22 @@
 package com.cos.BlogTest.web.dto;
 
+import java.security.Principal;
+
 import com.cos.BlogTest.domain.board.Board;
+import com.cos.BlogTest.domain.user.User;
 
 import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
 @Setter
 @Getter
 @AllArgsConstructor
+@Data
 public class BoardSaveReqDto {
 	
+
 	private String title;
 	private String content;
 	
@@ -20,6 +26,7 @@ public class BoardSaveReqDto {
 				.title(title)
 				.content(content)
 				.build();
+		
 		return board;
 	}
 }
