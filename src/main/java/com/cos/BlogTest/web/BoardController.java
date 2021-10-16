@@ -1,6 +1,7 @@
 package com.cos.BlogTest.web;
 
 import java.security.Principal;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -24,20 +25,47 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.cos.BlogTest.domain.board.Board;
 import com.cos.BlogTest.domain.board.BoardRepository;
+import com.cos.BlogTest.domain.comment.Comment;
+import com.cos.BlogTest.domain.comment.CommentRepository;
 import com.cos.BlogTest.domain.user.User;
 import com.cos.BlogTest.handler.ex.MyAsyncNotFoundException;
 import com.cos.BlogTest.handler.ex.MyNotFoundException;
 import com.cos.BlogTest.web.dto.BoardSaveReqDto;
 import com.cos.BlogTest.web.dto.CMRespDto;
+import com.cos.BlogTest.web.dto.CommentSaveReqDto;
 
 import lombok.RequiredArgsConstructor;
+
 
 @RequiredArgsConstructor
 @Controller
 public class BoardController {
 
 	private final BoardRepository boardRepository;
+	private final CommentRepository commentRepository;
 	private final HttpSession session;
+	
+	
+	@PostMapping("/board/{boardId}/comment")
+	public String commentSave(@PathVariable int boardId, CommentSaveReqDto dto) {
+
+
+		Comment comment = new Comment();
+
+		User principal = (User) session.getAttribute("principal");
+		Board boardEntity = boardRepository.findById(boardId)
+				.orElseThrow(()-> new MyNotFoundException("해당 게시글을 찾을 수 없습니다."));
+
+		comment.setContent(dto.getContent());
+		comment.setUser(principal);
+		comment.setBoard(boardEntity);
+
+		commentRepository.save(comment);
+
+		return "redirect:/board/"+boardId;
+	}
+
+	
 	
 	@DeleteMapping("/board/{id}")
 	public @ResponseBody CMRespDto<String> deleteById(@PathVariable int id) {
