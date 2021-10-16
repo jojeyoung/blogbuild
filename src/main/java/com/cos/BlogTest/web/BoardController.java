@@ -53,9 +53,14 @@ public class BoardController {
 		Comment comment = new Comment();
 
 		User principal = (User) session.getAttribute("principal");
+		if (principal == null) {
+			throw new MyNotFoundException("인증이 되지 않았습니다");
+		}
+		
 		Board boardEntity = boardRepository.findById(boardId)
 				.orElseThrow(()-> new MyNotFoundException("해당 게시글을 찾을 수 없습니다."));
 
+		
 		comment.setContent(dto.getContent());
 		comment.setUser(principal);
 		comment.setBoard(boardEntity);

@@ -55,27 +55,6 @@
 	</div>
 	<br />
 	 <!-- 댓글 끝 -->
-	 <div class="card">
-	 <div class="card-header">
-			<b>댓글 리스트</b>
-		</div>
-		
-			<c:forEach var="comment" items="${boardEntity.comments}">
-				<li id="reply-${comment.id}"
-					class="list-group-item d-flex justify-content-between">
-					<div>${comment.content}</div>
-					<div class="d-flex">
-						<div class="font-italic">작성자 : ${comment.user.username} &nbsp;</div>
-						<button class="badge">삭제</button>
-					</div>
-				</li>
-			</c:forEach>
-		</ul>
-		
-			</div>
-			<br />
-				</div>
-			 
 	
 	
 <%@ include file="../layout/footer.jsp"%>
