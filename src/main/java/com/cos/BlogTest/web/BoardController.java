@@ -73,7 +73,7 @@ public class BoardController {
 	
 	
 	@DeleteMapping("/board/{id}")
-	public @ResponseBody CMRespDto<String> deleteById(@PathVariable int id) {
+	public @ResponseBody CMRespDto<String> deleteById1(@PathVariable int id) {
 		
 		User principal = (User) session.getAttribute("principal");
 		//로그인 된 사람

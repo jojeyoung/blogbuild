@@ -5,11 +5,11 @@
 <div class="container">
 	<c:if test = "${sessionScope.principal.id == boardEntity.user.id}">
 		<a href="/board/${boardEntity.id}/updateForm" class="btn btn-warning">수정</a>
-		<button class="btn btn-danger" onclick="deleteById(${boardEntity.id})">삭제</button>
+		<button class="btn btn-danger" onclick="deleteById1(${boardEntity.id})">삭제</button>
 	</c:if>
 <script>
 		
-			async function deleteById(id){
+			async function deleteById1(id){
 				
 				let response = await fetch("http://localhost:8080/board/"+id, {
 					method: "delete"
